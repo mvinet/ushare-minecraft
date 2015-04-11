@@ -26,7 +26,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
-import fr.ushare.fanor.Usquare;
+import fr.ushare.fanor.Ushare;
 
 public class FrameWriter{
 
@@ -83,7 +83,7 @@ public class FrameWriter{
 			MultipartEntity mpEntity = new MultipartEntity();
 			ContentBody cbFile = new FileBody(file, "image/jpeg");
 			mpEntity.addPart("file", cbFile);
-			mpEntity.addPart("version", new StringBody("official_minecraft_ushare_" + Usquare.VERSION));
+			mpEntity.addPart("version", new StringBody("official_minecraft_ushare_" + Ushare.VERSION));
 
 			httppost.setEntity(mpEntity);
 			System.out.println("executing request " + httppost.getRequestLine());
