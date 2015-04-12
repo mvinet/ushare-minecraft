@@ -20,7 +20,6 @@ public class ClientProxy extends CommonProxy{
 
 	public ClientProxy()
 	{
-
 		FMLCommonHandler.instance().bus().register(this);
 		keyBind = new KeyBinding("Screen", Keyboard.KEY_U, "Ushare");
 		ClientRegistry.registerKeyBinding(keyBind);

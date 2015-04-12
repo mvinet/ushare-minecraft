@@ -92,7 +92,9 @@ public class FrameWriter{
 
 			System.out.println(response.getStatusLine());
 			if (resEntity != null) {
-				System.out.println(EntityUtils.toString(resEntity));
+				String picUrl = EntityUtils.toString(resEntity);
+				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(picUrl));
+				System.out.println(picUrl);
 			}
 			if (resEntity != null) {
 				resEntity.consumeContent();

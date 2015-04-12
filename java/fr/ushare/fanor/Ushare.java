@@ -18,27 +18,27 @@ public class Ushare
 {
 	@Instance(Ushare.MODID)
 	public static Ushare instance;
-	
+
 	@SidedProxy(clientSide = "fr.ushare.fanor.ClientProxy", serverSide = "fr.ushare.fanor.CommonProxy")
 	public static CommonProxy proxy;
-	
+
 	public static final String MODID = "ushare";
-    public static final String VERSION = "1.0";
-    
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent e)
-    {
-    	File directory = new File(Minecraft.getMinecraft().mcDataDir + "//Ushare");
+	public static final String VERSION = "Beta1.0";
+
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent e)
+	{
+		File directory = new File(Minecraft.getMinecraft().mcDataDir + "//Ushare");
 		if(!directory.exists()){
 			directory.mkdirs();
 		}
-    }
-    @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-    	proxy.registerRender();	
-    	MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
-    	
-    	
-    }
+	}
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		proxy.registerRender();	
+		MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
+
+
+	}
 }

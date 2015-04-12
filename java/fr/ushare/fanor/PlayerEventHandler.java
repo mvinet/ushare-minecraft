@@ -26,7 +26,7 @@ public class PlayerEventHandler {
 				String urlv = txt.readLine();
 				if(!Ushare.VERSION.equalsIgnoreCase(urlv))
 				{
-					Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("La version " + urlv + " de UsquareMod est maintenant disponible sur http://google.fr"));	
+					Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("La version " + urlv + " de UsquareMod est maintenant disponible sur http://usqua.re"));	
 				}
 
 			} 
