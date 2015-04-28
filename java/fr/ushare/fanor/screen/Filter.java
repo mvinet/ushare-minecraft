@@ -7,7 +7,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 
+import fr.ushare.fanor.Ushare;
+
 public class Filter{
+
 	
 	//Overlays a filter with the set color and transparency.
 	public static void overlayFrameFromColor(Frame frame, Color color, float transparency){

@@ -20,18 +20,19 @@ public class PlayerEventHandler {
 		{
 			try 
 			{
-				URL url = new URL("http://dev.fanor79.com/usquare/version.txt");
+				URL url = new URL("http://dev.fanor79.com/ushare/version.txt");
 				InputStream ins = url.openStream();
 				BufferedReader txt = new BufferedReader(new InputStreamReader(ins));
 				String urlv = txt.readLine();
 				if(!Ushare.VERSION.equalsIgnoreCase(urlv))
 				{
-					Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("La version " + urlv + " de UsquareMod est maintenant disponible sur http://usqua.re"));	
+					Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("A new release of Ushare " + urlv + " is now available on http://usqua.re"));	
 				}
 
 			} 
 			catch (Exception e2) 
 			{
+		//		Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("A new release of Ushare is now available on http://usqua.re"));	
 			}
 		}
 	}

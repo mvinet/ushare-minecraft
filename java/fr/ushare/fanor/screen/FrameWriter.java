@@ -1,5 +1,6 @@
 package fr.ushare.fanor.screen;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -18,15 +19,16 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.ContentBody;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
+import fr.ushare.apache.MultipartEntity;
+import fr.ushare.apache.content.ContentBody;
+import fr.ushare.apache.content.FileBody;
+import fr.ushare.apache.content.StringBody;
 import fr.ushare.fanor.Ushare;
+import fr.ushare.fanor.Utils;
 
 public class FrameWriter{
 
@@ -60,6 +62,7 @@ public class FrameWriter{
 	//Saves the frame to the output file.
 	public static void saveFrameAsImage(Frame frame){
 		try{
+		//	Filter.overlayFrameFromColor(frame, Color.RED, 0.4f);
 			final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 			File output = new File(outputFile, "screenshot_" + dateFormat.format(new Date()).toString() + ".jpg");
 			ImageIO.write(frame.getBufferedImage(), "jpg", output);
@@ -93,8 +96,8 @@ public class FrameWriter{
 			System.out.println(response.getStatusLine());
 			if (resEntity != null) {
 				String picUrl = EntityUtils.toString(resEntity);
-				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(picUrl));
-				System.out.println(picUrl);
+				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Copied in clipboard !"));
+				Utils.Copier(picUrl);
 			}
 			if (resEntity != null) {
 				resEntity.consumeContent();

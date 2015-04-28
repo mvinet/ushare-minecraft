@@ -15,7 +15,7 @@ public class Frame extends BufferedImage{
 		super(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
 		this.frameID = frameID;
 		if(FrameWriter.getOutput() == null){
-			FrameWriter.setOutput(Minecraft.getMinecraft().mcDataDir + "//Ushare");
+			FrameWriter.setOutput(Minecraft.getMinecraft().mcDataDir + "//Ushare//Screen");
 		}
 		loadFrame(image);
 	}

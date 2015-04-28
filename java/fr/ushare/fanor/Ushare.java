@@ -1,11 +1,14 @@
 package fr.ushare.fanor;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
+import scala.collection.parallel.ParIterableLike.Min;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -22,16 +25,22 @@ public class Ushare
 	@SidedProxy(clientSide = "fr.ushare.fanor.ClientProxy", serverSide = "fr.ushare.fanor.CommonProxy")
 	public static CommonProxy proxy;
 
+	
 	public static final String MODID = "ushare";
-	public static final String VERSION = "Beta1.0";
+	public static final String VERSION = "Beta1.2";
 
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		File directory = new File(Minecraft.getMinecraft().mcDataDir + "//Ushare");
+		File directory = new File(Minecraft.getMinecraft().mcDataDir + "//Ushare//Screen");
+		
 		if(!directory.exists()){
 			directory.mkdirs();
 		}
+		
+		Utils.GenererConfig();
+		
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent event)
