@@ -1,5 +1,6 @@
 package fr.ushare.fanor;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -73,7 +74,7 @@ public class Utils {
 				rootElement.appendChild(setting);
 
 				// opacity elements
-				Element opacity = doc.createElement("opacity");
+				Element opacity = doc.createElement("transparency");
 				opacity.appendChild(doc.createTextNode("0.0"));
 				setting.appendChild(opacity);
 
@@ -150,7 +151,6 @@ public class Utils {
 		{
 			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
 			{
-
 				final Element setting = (Element) racineNoeuds.item(i);
 				final Element val = (Element)setting.getElementsByTagName(field).item(0);
 				val.setTextContent(value);
@@ -173,5 +173,24 @@ public class Utils {
 		transformer.transform(i, o);
 
 	}
+	
+	/**
+	 * return the Color of the parametre
+	 */
+	public static Color getColor(String color)
+	{
+		switch (color) {
+		case "red":
+			return Color.RED;
+		case "green":
+			return Color.GREEN;
+		case "blue":
+			return Color.BLUE;
+		default:
+			return null;
+
+		}	
+	}
+	
 
 }

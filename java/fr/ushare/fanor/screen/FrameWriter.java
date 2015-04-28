@@ -62,14 +62,23 @@ public class FrameWriter{
 	//Saves the frame to the output file.
 	public static void saveFrameAsImage(Frame frame){
 		try{
-		//	Filter.overlayFrameFromColor(frame, Color.RED, 0.4f);
+			//	Filter.overlayFrameFromColor(frame, Color.RED, 0.4f);
 			final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 			File output = new File(outputFile, "screenshot_" + dateFormat.format(new Date()).toString() + ".jpg");
-			ImageIO.write(frame.getBufferedImage(), "jpg", output);
 			
+			if(!Utils.getSetting("color").equalsIgnoreCase("none"))
+			{
+				Filter.overlayFrameFromColor(frame, Utils.getColor(Utils.getSetting("color")), Float.parseFloat(Utils.getSetting("transparency"))/100F);
+			}
+
+			ImageIO.write(frame.getBufferedImage(), "jpg", output);
+
 			sendPost(output);
+			
 		}catch(IOException exception){
 			exception.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
