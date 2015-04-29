@@ -173,24 +173,20 @@ public class Utils {
 		transformer.transform(i, o);
 
 	}
-	
+
 	/**
 	 * return the Color of the parametre
 	 */
 	public static Color getColor(String color)
 	{
-		switch (color) {
-		case "red":
+		if(color.equalsIgnoreCase("red"))
 			return Color.RED;
-		case "green":
+		else if(color.equalsIgnoreCase("green"))
 			return Color.GREEN;
-		case "blue":
+		else if(color.equalsIgnoreCase("blue"))
 			return Color.BLUE;
-		default:
-			return null;
-
-		}	
+		return null;
 	}
-	
+
 
 }

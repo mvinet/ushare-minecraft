@@ -27,6 +27,7 @@ import fr.ushare.apache.MultipartEntity;
 import fr.ushare.apache.content.ContentBody;
 import fr.ushare.apache.content.FileBody;
 import fr.ushare.apache.content.StringBody;
+import fr.ushare.fanor.SendFile;
 import fr.ushare.fanor.Ushare;
 import fr.ushare.fanor.Utils;
 
@@ -65,7 +66,7 @@ public class FrameWriter{
 			//	Filter.overlayFrameFromColor(frame, Color.RED, 0.4f);
 			final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 			File output = new File(outputFile, "screenshot_" + dateFormat.format(new Date()).toString() + ".jpg");
-			
+
 			if(!Utils.getSetting("color").equalsIgnoreCase("none"))
 			{
 				Filter.overlayFrameFromColor(frame, Utils.getColor(Utils.getSetting("color")), Float.parseFloat(Utils.getSetting("transparency"))/100F);
@@ -73,8 +74,9 @@ public class FrameWriter{
 
 			ImageIO.write(frame.getBufferedImage(), "jpg", output);
 
-			sendPost(output);
-			
+			SendFile sfile = new SendFile("sendfile", output);
+			sfile.start();
+
 		}catch(IOException exception){
 			exception.printStackTrace();
 		} catch (Exception e) {
@@ -82,46 +84,4 @@ public class FrameWriter{
 		}
 	}
 
-	@SuppressWarnings("resource")
-	private static void sendPost(File file)
-	{
-		try
-		{
-			HttpClient httpclient = new DefaultHttpClient();
-			httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-
-			HttpPost httppost = new HttpPost("http://usqua.re/file/upload/");
-
-			MultipartEntity mpEntity = new MultipartEntity();
-			ContentBody cbFile = new FileBody(file, "image/jpeg");
-			mpEntity.addPart("file", cbFile);
-			mpEntity.addPart("version", new StringBody("official_minecraft_ushare_" + Ushare.VERSION));
-
-			httppost.setEntity(mpEntity);
-			System.out.println("executing request " + httppost.getRequestLine());
-			HttpResponse response = httpclient.execute(httppost);
-			HttpEntity resEntity = response.getEntity();
-
-			System.out.println(response.getStatusLine());
-			if (resEntity != null) {
-				String picUrl = EntityUtils.toString(resEntity);
-				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Copied in clipboard !"));
-				Utils.Copier(picUrl);
-			}
-			if (resEntity != null) {
-				resEntity.consumeContent();
-			}
-
-			httpclient.getConnectionManager().shutdown();
-
-			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Screen Save"));
-		}
-		catch(Exception e)
-		{
-			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Error"));
-			e.printStackTrace();
-		}
-
-
-	}
 }

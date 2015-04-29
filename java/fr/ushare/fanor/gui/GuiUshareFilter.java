@@ -34,21 +34,25 @@ public class GuiUshareFilter extends GuiScreen{
 			switch(button.id)
 			{
 			case 2:
-				switch(button.displayString)
+
+
+				if(button.displayString.equalsIgnoreCase("none"))
 				{
-				case "none":
 					button.displayString = "red";
 					Utils.setSetting("color", "red");
-					break;
-				case "red":
+				}
+				else if(button.displayString.equalsIgnoreCase("red"))
+				{
 					button.displayString = "green";
 					Utils.setSetting("color", "green");
-					break;
-				case "green":
+				}
+				else if(button.displayString.equalsIgnoreCase("green"))
+				{
 					button.displayString = "blue";
 					Utils.setSetting("color", "blue");
-					break;
-				case "blue":
+				}
+				else
+				{
 					button.displayString = "none";
 					Utils.setSetting("color", "none");
 				}
