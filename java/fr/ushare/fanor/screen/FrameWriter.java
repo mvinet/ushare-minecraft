@@ -1,6 +1,7 @@
 package fr.ushare.fanor.screen;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -60,6 +61,14 @@ public class FrameWriter{
 		return Arrays.asList(outputFile.listFiles());
 	}
 
+	public static void screen()
+	{
+		BufferedImage image = CameraHelper.takeScreenShot();
+		Frame frame = Frame.getFrameFromBufferedImage(image);
+		FrameWriter.saveFrameAsImage(frame);
+
+	}
+	
 	//Saves the frame to the output file.
 	public static void saveFrameAsImage(Frame frame){
 		try{
@@ -74,14 +83,57 @@ public class FrameWriter{
 
 			ImageIO.write(frame.getBufferedImage(), "jpg", output);
 
-			SendFile sfile = new SendFile("sendfile", output);
-			sfile.start();
-
+			sendPost(output);
+			
 		}catch(IOException exception){
 			exception.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@SuppressWarnings("resource")
+	public static void sendPost(File file)
+	{
+		try
+		{
+			HttpClient httpclient = new DefaultHttpClient();
+			httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+
+			HttpPost httppost = new HttpPost("http://usqua.re/file/upload/");
+
+			MultipartEntity mpEntity = new MultipartEntity();
+			ContentBody cbFile = new FileBody(file, "image/jpeg");
+			mpEntity.addPart("file", cbFile);
+			mpEntity.addPart("version", new StringBody("official_minecraft_ushare_" + Ushare.VERSION));
+
+			httppost.setEntity(mpEntity);
+			System.out.println("executing request " + httppost.getRequestLine());
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity resEntity = response.getEntity();
+
+			System.out.println(response.getStatusLine());
+			if (resEntity != null) {
+				String picUrl = EntityUtils.toString(resEntity);
+				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Copied in clipboard !"));
+				Utils.Copier(picUrl);
+			}
+			if (resEntity != null) {
+				resEntity.consumeContent();
+			}
+
+			httpclient.getConnectionManager().shutdown();
+
+			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Screen Save"));
+		}
+		catch(Exception e)
+		{
+			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Error"));
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 }

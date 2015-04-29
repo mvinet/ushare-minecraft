@@ -9,12 +9,12 @@ import scala.collection.parallel.ParIterableLike.Min;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Ushare.MODID, version = Ushare.VERSION)
 public class Ushare
@@ -27,7 +27,7 @@ public class Ushare
 
 	
 	public static final String MODID = "ushare";
-	public static final String VERSION = "Beta1.2";
+	public static final String VERSION = "Beta1.3";
 
 	
 	@EventHandler

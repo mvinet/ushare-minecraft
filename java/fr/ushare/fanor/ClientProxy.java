@@ -5,13 +5,13 @@ import java.awt.image.BufferedImage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import fr.ushare.fanor.gui.GuiUshare;
 import fr.ushare.fanor.screen.CameraHelper;
 import fr.ushare.fanor.screen.Frame;
@@ -38,7 +38,9 @@ public class ClientProxy extends CommonProxy{
 	{
 		if(keyScreen.isPressed())
 		{
-			screen();
+			
+			SendFile sfile = new SendFile("sendfile");
+			sfile.start();
 		}
 		
 		if(keyGui.isPressed())
@@ -47,12 +49,6 @@ public class ClientProxy extends CommonProxy{
 		}
 	}
 
-	public void screen()
-	{
-		BufferedImage image = CameraHelper.takeScreenShot();
-		Frame frame = Frame.getFrameFromBufferedImage(image);
-		FrameWriter.saveFrameAsImage(frame);
-
-	}
+	
 
 }
