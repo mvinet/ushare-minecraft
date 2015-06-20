@@ -1,15 +1,15 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
+  "modid": "ushare",
+  "name": "Ushare Mod",
+  "description": "Instantly share your game !",
+  "version": "Beta1.3",
+  "mcversion": "1.8",
+  "url": "http://usqua.re",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
+  "authorList": ["Fanor79", "Imote"],
+  "credits": "",
+  "logoFile": "logo.png",
   "screenshots": [],
   "dependencies": []
 }
