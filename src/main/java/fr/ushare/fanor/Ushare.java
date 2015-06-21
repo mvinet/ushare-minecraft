@@ -27,7 +27,6 @@ public class Ushare
 	
 	public static final String MODID = "ushare";
 	public static final String VERSION = "Beta1.4";
-
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)

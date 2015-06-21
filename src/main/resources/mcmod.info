@@ -10,7 +10,7 @@
   "authorList": ["Fanor79", "Imote"],
   "credits": "",
   "logoFile": "logo.png",
-  "screenshots": [],
+  "screenshots": ["logo.png"],
   "dependencies": []
 }
 ]

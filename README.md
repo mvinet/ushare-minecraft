@@ -1,5 +1,8 @@
 # ushare-minecraft #
 
-## V 1.8##
-:D
+## TODO ##
+	Appareil photo qui prend en photo
+	System login
+	Livre qui affiche les photo déjà pris
+	 
 
