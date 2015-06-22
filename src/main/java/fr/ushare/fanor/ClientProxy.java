@@ -52,7 +52,7 @@ public class ClientProxy extends CommonProxy{
 								
 							}
 							//SendFile sfile = new SendFile("sendfile");
-							//sfile.start();
+							//sfile.start(); 
 						}
 					}
 				}
