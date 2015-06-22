@@ -10,6 +10,7 @@ public class GuiUshareFilter extends GuiScreen{
 	public String color = "none";
 	public int transparency = 0;
 
+	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
 		byte b0 = -16;

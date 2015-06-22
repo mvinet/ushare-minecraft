@@ -11,11 +11,11 @@ import net.minecraft.util.BlockPos;
 
 public class CommandScreen implements ICommand 
 {
-	private List aliases;
+	private List<String> aliases;
 	
 	public CommandScreen() 
 	{
-		this.aliases = new ArrayList();
+		this.aliases = new ArrayList<String>();
 		this.aliases.add("screen");
 		this.aliases.add("s");
 	}
@@ -39,7 +39,7 @@ public class CommandScreen implements ICommand
 	}
 
 	@Override
-	public List getAliases() 
+	public List<String> getAliases() 
 	{
 		return this.aliases;
 	}
@@ -58,7 +58,7 @@ public class CommandScreen implements ICommand
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) 
+	public List<?> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) 
 	{
 		return null;
 	}

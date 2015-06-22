@@ -3,8 +3,6 @@ package fr.ushare.fanor;
 import java.io.File;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ScreenShotHelper;
-import net.minecraft.world.gen.feature.WorldGenIceSpike;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -26,7 +24,7 @@ public class Ushare
 	public static CommonProxy proxy;
 	
 	public static final String MODID = "ushare";
-	public static final String VERSION = "Beta1.4";
+	public static final String VERSION = "Beta1.5";
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
@@ -45,6 +43,7 @@ public class Ushare
 	{
 		proxy.registerRender();	
 		MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
+		
 		
 	}
 	

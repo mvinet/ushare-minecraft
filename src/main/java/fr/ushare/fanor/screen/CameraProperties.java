@@ -14,7 +14,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 public class CameraProperties implements IExtendedEntityProperties{
 
 	public static final String SKILL_ID = "CameraAPI";
-	private final EntityPlayer player;
+	protected final EntityPlayer player;
 	
 	public CameraProperties(EntityPlayer player){
 		this.player = player;
@@ -36,7 +36,6 @@ public class CameraProperties implements IExtendedEntityProperties{
 	
 	@Override
 	public void loadNBTData(NBTTagCompound compound){
-		NBTTagCompound properties = (NBTTagCompound) compound.getTag(SKILL_ID);
     	
 		try{
 			for(File file : FrameWriter.getOutputFiles()){

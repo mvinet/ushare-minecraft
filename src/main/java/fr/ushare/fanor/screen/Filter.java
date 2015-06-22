@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 
-import fr.ushare.fanor.Ushare;
-
 public class Filter{
 
 	

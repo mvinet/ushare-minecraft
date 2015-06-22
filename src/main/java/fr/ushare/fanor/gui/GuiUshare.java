@@ -6,7 +6,7 @@ import net.minecraft.client.resources.I18n;
 
 public class GuiUshare extends GuiScreen{
 
-	// GuiIngameMenu
+	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
 		byte b0 = -16;

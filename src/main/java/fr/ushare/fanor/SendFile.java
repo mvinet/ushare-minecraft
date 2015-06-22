@@ -10,6 +10,7 @@ public class SendFile extends Thread{
 		super(name);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void run()
 	{
 		System.out.println("ok");

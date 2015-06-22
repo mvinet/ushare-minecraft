@@ -1,10 +1,13 @@
 package fr.ushare.fanor.screen;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -13,7 +16,9 @@ import net.minecraft.event.ClickEvent;
 import net.minecraft.event.ClickEvent.Action;
 import net.minecraft.util.ChatComponentText;
 
-import org.apache.http.*;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -21,9 +26,13 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
 import fr.ushare.apache.MultipartEntity;
-import fr.ushare.apache.content.*;
-import fr.ushare.fanor.*;
+import fr.ushare.apache.content.ContentBody;
+import fr.ushare.apache.content.FileBody;
+import fr.ushare.apache.content.StringBody;
+import fr.ushare.fanor.Ushare;
+import fr.ushare.fanor.Utils;
 
+@SuppressWarnings("deprecation")
 public class FrameWriter{
 
 	private static File outputFile;
@@ -85,7 +94,7 @@ public class FrameWriter{
 		}
 	}
 
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource" })
 	public static void sendPost(File file)
 	{
 		String picUrl = "";
