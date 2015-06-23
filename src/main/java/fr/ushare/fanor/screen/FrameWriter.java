@@ -118,7 +118,7 @@ public class FrameWriter{
 			System.out.println(response.getStatusLine());
 			if (resEntity != null) {
 				picUrl = EntityUtils.toString(resEntity);
-				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Copied in clipboard !"));
+				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Link copied in clipboard !"));
 				Utils.Copier(picUrl);
 			}
 			if (resEntity != null) {
@@ -130,6 +130,8 @@ public class FrameWriter{
 			chat.getChatStyle().setChatClickEvent(new ClickEvent(Action.OPEN_URL, picUrl));
 			chat.getChatStyle().setUnderlined(true);
 			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(chat);
+			
+			file.delete();
 
 		}
 		catch(Exception e)

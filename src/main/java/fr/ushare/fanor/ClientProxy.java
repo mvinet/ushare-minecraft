@@ -1,6 +1,7 @@
 package fr.ushare.fanor;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiControls;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -43,8 +44,8 @@ public class ClientProxy extends CommonProxy{
 	public ClientProxy()
 	{
 		FMLCommonHandler.instance().bus().register(this);
-		keyScreen = new KeyBinding("Screen", Keyboard.KEY_U, "Ushare");
-		keyGui = new KeyBinding("Gui", Keyboard.KEY_Y, "Ushare");
+		keyScreen = new KeyBinding("Screen", Keyboard.KEY_F2, "Ushare");
+		keyGui = new KeyBinding("Gui", Keyboard.KEY_U, "Ushare");
 		press = false;
 		mc = Minecraft.getMinecraft();
 
