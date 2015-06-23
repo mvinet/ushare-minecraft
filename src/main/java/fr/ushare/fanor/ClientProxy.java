@@ -19,15 +19,16 @@ public class ClientProxy extends CommonProxy{
 	public static KeyBinding keyScreen;
 	public static KeyBinding keyGui;
 	private Minecraft mc;
+	private boolean press;
 
 	public ClientProxy()
 	{
 		FMLCommonHandler.instance().bus().register(this);
 		keyScreen = new KeyBinding("Screen", Keyboard.KEY_U, "Ushare");
 		keyGui = new KeyBinding("Gui", Keyboard.KEY_Y, "Ushare");
-
+		press = false;
 		mc = Minecraft.getMinecraft();
-		
+
 		ClientRegistry.registerKeyBinding(keyScreen);
 		ClientRegistry.registerKeyBinding(keyGui);
 	}
@@ -38,7 +39,7 @@ public class ClientProxy extends CommonProxy{
 		if(event.phase == Phase.END)
 		{
 			int i = Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() : Keyboard.getEventKey();
-			
+
 			if(i != 0 && !Keyboard.isRepeatEvent())
 			{
 				if(!(mc.currentScreen instanceof GuiControls) || ((GuiControls)mc.currentScreen).time <= Minecraft.getSystemTime() - 20L)
@@ -47,13 +48,17 @@ public class ClientProxy extends CommonProxy{
 					{
 						if(i == keyScreen.getKeyCode())
 						{
-							if(Keyboard.next()){
-								System.out.println("ok");
-								
+							if(!press)
+							{
+								SendFile sfile = new SendFile("sendfile");
+								sfile.start(); 
+								this.press = true;
 							}
-							//SendFile sfile = new SendFile("sendfile");
-							//sfile.start(); 
 						}
+					}
+					else
+					{
+						this.press = false;
 					}
 				}
 			}
