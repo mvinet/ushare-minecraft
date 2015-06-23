@@ -13,7 +13,6 @@ public class SendFile extends Thread{
 	@SuppressWarnings("deprecation")
 	public void run()
 	{
-		System.out.println("ok");
 		FrameWriter.screen();
 		this.stop();
 	}

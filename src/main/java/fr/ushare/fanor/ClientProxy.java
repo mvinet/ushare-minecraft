@@ -14,11 +14,30 @@ import org.lwjgl.input.Keyboard;
 
 import fr.ushare.fanor.gui.GuiUshare;
 
+/**
+ * @author Fanor
+ * Client proxy for the mod
+ */
 public class ClientProxy extends CommonProxy{
 
+	/**
+	 * Key Binding for Screen
+	 */
 	public static KeyBinding keyScreen;
+	
+	/**
+	 * Key Binding for Gui
+	 */
 	public static KeyBinding keyGui;
+	
+	/**
+	 * Minecraft
+	 */
 	private Minecraft mc;
+	
+	/**
+	 * press
+	 */
 	private boolean press;
 
 	public ClientProxy()

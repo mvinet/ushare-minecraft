@@ -17,13 +17,26 @@ import fr.ushare.fanor.cmd.CommandScreen;
 @Mod(modid = Ushare.MODID, version = Ushare.VERSION)
 public class Ushare
 {
+	/**
+	 * Instace of mod
+	 */
 	@Instance(Ushare.MODID)
 	public static Ushare instance;
 
+	/**
+	 * Proxy of mod
+	 */
 	@SidedProxy(clientSide = "fr.ushare.fanor.ClientProxy", serverSide = "fr.ushare.fanor.CommonProxy")
 	public static CommonProxy proxy;
 	
+	/**
+	 * Mod ID of mod
+	 */
 	public static final String MODID = "ushare";
+	
+	/**
+	 * Version of Mod
+	 */
 	public static final String VERSION = "Beta1.5";
 	
 	@EventHandler

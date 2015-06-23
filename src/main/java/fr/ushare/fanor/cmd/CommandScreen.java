@@ -11,6 +11,9 @@ import net.minecraft.util.BlockPos;
 
 public class CommandScreen implements ICommand 
 {
+	/**
+	 * aliases for the screen cmd
+	 */
 	private List<String> aliases;
 	
 	public CommandScreen() 

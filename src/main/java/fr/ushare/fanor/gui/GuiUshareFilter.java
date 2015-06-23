@@ -7,7 +7,14 @@ import fr.ushare.fanor.Utils;
 
 public class GuiUshareFilter extends GuiScreen{
 
+	/**
+	 * color
+	 */
 	public String color = "none";
+	
+	/**
+	 * transparency
+	 */
 	public int transparency = 0;
 
 	@SuppressWarnings("unchecked")
