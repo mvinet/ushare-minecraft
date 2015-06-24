@@ -5,6 +5,16 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import fr.ushare.fanor.Utils;
 
+/**
+ * This file (c) by : - Mickael VINET alias fanor79
+ *
+ * This file is licensed under a
+ * GNU GENERAL PUBLIC LICENSE V3.0
+ *
+ * See the LICENSE file to learn more.
+ *
+ * If you have contributed to this file, add your name to authors list.
+*/
 public class GuiUshareFilter extends GuiScreen{
 
 	/**
