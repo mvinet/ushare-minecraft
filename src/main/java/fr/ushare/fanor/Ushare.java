@@ -39,6 +39,11 @@ public class Ushare
 	 */
 	public static final String VERSION = "Beta1.5";
 	
+	/**
+	 * API 
+	 */
+	public UshareAPI api;
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
@@ -56,19 +61,22 @@ public class Ushare
 	{
 		proxy.registerRender();	
 		MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
-		
-		
 	}
-	
-	
 	
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent event)
-	{}
+	{
+		api = new UshareAPI();
+	}
 	
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new CommandScreen());
+	}
+	
+	public UshareAPI getApi()
+	{
+		return this.api;
 	}
 }

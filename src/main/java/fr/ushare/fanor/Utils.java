@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
+import java.security.MessageDigest;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,16 +27,23 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 
 public class Utils {
 
+	/**
+	 * Copy text to clipboard
+	 * @param text
+	 */
 	public static void Copier(String text)
 	{
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Clipboard clip = toolkit.getSystemClipboard();
 		clip.setContents(new StringSelection(text), null);
 	}
-
+	
 	/**
 	 * @return path for config files
 	 */
@@ -65,7 +73,7 @@ public class Utils {
 
 				// root elements
 				Document doc = docBuilder.newDocument();
-				Element rootElement = doc.createElement("Filter");
+				Element rootElement = doc.createElement("Config");
 				doc.appendChild(rootElement);
 
 				// setting elements
@@ -139,7 +147,6 @@ public class Utils {
 	 */
 	public static void setSetting(String field, String value) throws Exception
 	{
-
 		Document doc = readXml(getConfig());
 		Element racine = doc.getDocumentElement();
 
@@ -151,8 +158,16 @@ public class Utils {
 			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
 			{
 				final Element setting = (Element) racineNoeuds.item(i);
-				final Element val = (Element)setting.getElementsByTagName(field).item(0);
-				val.setTextContent(value);
+				try
+				{
+					final Element val = (Element)setting.getElementsByTagName(field).item(0);
+					val.setTextContent(value);	
+				}catch(Exception e)
+				{
+					Element newElement = doc.createElement(field);
+					newElement.appendChild(doc.createTextNode(value));
+					setting.appendChild(newElement);
+				}
 			}
 		}
 
@@ -187,5 +202,32 @@ public class Utils {
 		return null;
 	}
 
+	/**
+	 * convert password to SHA512
+	 */
+	public static String toSHA512(String password) throws Exception
+	{
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		md.update(password.getBytes());
+		
+		byte byteData[] = md.digest();
+		
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < byteData.length; i++)
+		{
+			sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+		}
+	
+		return sb.toString();
+	}
+	
+	/**
+	 * Convert String to JSON
+	 */
+	public static JsonObject toJSON(String text)
+	{
+		JsonObject jsonObject = (new JsonParser().parse(text).getAsJsonObject());
+		return jsonObject;
+	}
 
 }
