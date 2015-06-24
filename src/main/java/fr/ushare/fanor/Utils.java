@@ -205,7 +205,7 @@ public class Utils {
 	/**
 	 * convert password to SHA512
 	 */
-	public static String toSHA512(String password) throws Exception
+	public static String toSHA256(String password) throws Exception
 	{
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		md.update(password.getBytes());
