@@ -10,6 +10,7 @@ import net.minecraft.client.resources.I18n;
 import org.lwjgl.input.Keyboard;
 
 import fr.ushare.fanor.Ushare;
+import fr.ushare.fanor.Utils;
 
 /**
  * This file (c) by : - Mickael VINET alias fanor79
@@ -83,6 +84,19 @@ public class GuiUshareLogin extends GuiScreen {
 		{
 		case 2:
 			Ushare.instance.getApi().login(this.textLogin, this.textPassword);
+			try
+			{
+				if(Utils.getSetting("loginSuccess").equalsIgnoreCase("true"))
+				{
+					this.mc.displayGuiScreen((GuiScreen)null);
+					this.mc.setIngameFocus();
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+			
 			break;
 		case 4:
 			this.mc.displayGuiScreen((GuiScreen)null);

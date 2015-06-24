@@ -4,6 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import fr.ushare.fanor.Ushare;
+import fr.ushare.fanor.Utils;
 
 /**
  * This file (c) by : - Mickael VINET alias fanor79
@@ -14,42 +15,55 @@ import fr.ushare.fanor.Ushare;
  * See the LICENSE file to learn more.
  *
  * If you have contributed to this file, add your name to authors list.
-*/
+ */
 public class GuiUshare extends GuiScreen{
 
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
-		byte b0 = -16;
-
-		if(!Ushare.instance.api.getLoginSuccess())
-		{
-			this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + b0*7, I18n.format("Login", new Object[0])));
-		}
 		
-		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + b0*3, I18n.format("Filter", new Object[0])));
+		byte b0 = -16;
+		try
+		{
+			if(!Utils.getSetting("loginSuccess").equalsIgnoreCase("true"))
+			{
+				this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + b0*7, I18n.format("Login", new Object[0])));
+			}
+			else
+			{
+				this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + b0*7, I18n.format("Logout", new Object[0])));
+			}
 
-		this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 120 + b0, I18n.format("menu.returnToGame", new Object[0])));
+			this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 120 + b0*3, I18n.format("Filter", new Object[0])));
 
+			this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 120 + b0, I18n.format("menu.returnToGame", new Object[0])));
+	
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
 	}
-    
+
 	protected void actionPerformed(GuiButton button)
 	{
 		switch(button.id)
 		{
 		case 0:
-			Ushare.instance.api.info();
-			//this.mc.displayGuiScreen(new GuiUshareLogin());
+			this.mc.displayGuiScreen(new GuiUshareLogin());
+			break;
+		case 1:
+			Ushare.instance.api.logout();
+			this.mc.displayGuiScreen(this);
 			break;
 			
-		case 1:
+		case 2:
 			this.mc.displayGuiScreen(new GuiUshareFilter());
 			break;
-		
-		 case 4:
-             this.mc.displayGuiScreen((GuiScreen)null);
-             this.mc.setIngameFocus();
-             break;
+
+		case 4:
+			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.setIngameFocus();
+			break;
 		}
 	}
 

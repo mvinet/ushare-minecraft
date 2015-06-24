@@ -47,7 +47,7 @@ public class Ushare
 	/**
 	 * Version of Mod
 	 */
-	public static final String VERSION = "Beta1.5";
+	public static final String VERSION = "Beta1.6";
 	
 	/**
 	 * API 

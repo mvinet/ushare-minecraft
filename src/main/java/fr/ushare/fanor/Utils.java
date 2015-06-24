@@ -133,7 +133,9 @@ public class Utils {
 	 */
 	public static String getSetting(String field) throws Exception
 	{
-		Element racine = readXml(getConfig()).getDocumentElement();
+		Document doc = readXml(getConfig());
+		Element racine = doc.getDocumentElement();
+		
 		final NodeList racineNoeuds = racine.getChildNodes();
 		final int nbRacineNoueds = racineNoeuds.getLength();
 		String res = "";
@@ -143,8 +145,19 @@ public class Utils {
 			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
 			{
 				final Element setting = (Element) racineNoeuds.item(i);
-				final Element val = (Element)setting.getElementsByTagName(field).item(0);
-				res = val.getTextContent();
+				
+				try
+				{
+					final Element val = (Element)setting.getElementsByTagName(field).item(0);
+					res = val.getTextContent();	
+				}
+				catch(Exception e)
+				{
+					Element newElement = doc.createElement(field);
+					newElement.appendChild(doc.createTextNode("null"));
+					setting.appendChild(newElement);
+				}
+
 			}
 		}
 

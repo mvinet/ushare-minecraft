@@ -42,11 +42,6 @@ import fr.ushare.apache.content.StringBody;
 public class UshareAPI {
 
 	/**
-	 * login Success
-	 */
-	private boolean loginSuccess = false;
-
-	/**
 	 * API allow send file
 	 * @param file the file to upload
 	 */
@@ -63,6 +58,14 @@ public class UshareAPI {
 
 			MultipartEntity mpEntity = new MultipartEntity();
 			ContentBody cbFile = new FileBody(file, "image/jpeg");
+			
+			if(Utils.getSetting("loginSuccess").equalsIgnoreCase("true"))
+			{
+				mpEntity.addPart("accountkey", new StringBody(Utils.getSetting("accountkey")));
+				mpEntity.addPart("privatekey", new StringBody(Utils.getSetting("privatekey")));
+			}
+			
+			
 			mpEntity.addPart("file", cbFile);
 			mpEntity.addPart("source", new StringBody("minecraft_" + Ushare.VERSION));
 
@@ -140,9 +143,9 @@ public class UshareAPI {
 			resEntity.consumeContent();
 			httpclient.getConnectionManager().shutdown();
 
-			this.loginSuccess = Utils.toJSON(result).get("success").getAsBoolean();
+			Utils.setSetting("loginSuccess", Utils.toJSON(result).get("success").getAsBoolean() + "");
 
-			if(loginSuccess)
+			if(Utils.getSetting("loginSuccess").equalsIgnoreCase("true"))
 			{
 				Utils.setSetting("accountkey", Utils.toJSON(result).get("accountkey").getAsString());
 				Utils.setSetting("privatekey", Utils.toJSON(result).get("privatekey").getAsString());
@@ -191,7 +194,7 @@ public class UshareAPI {
 			}
 			else
 			{
-				body.append(statusLine + "\n");
+				Utils.setSetting("loginSuccess", "false");
 			}
 		}
 		catch(Exception e)
@@ -207,10 +210,47 @@ public class UshareAPI {
 	}
 
 	/**
-	 * @return loginSuccess
+	 * API Logout
 	 */
-	public boolean getLoginSuccess()
-	{
-		return this.loginSuccess;
+	@SuppressWarnings("resource")
+	public void logout() {
+		
+		String result = "";
+		
+		try
+		{
+			HttpClient httpclient = new DefaultHttpClient();
+			httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+
+			HttpPost httppost = new HttpPost("http://api.ushare.so/user/revoke/auth");
+
+			MultipartEntity mpEntity = new MultipartEntity();
+
+			mpEntity.addPart("accountkey", new StringBody(Utils.getSetting("accountkey")));
+			mpEntity.addPart("privatekey", new StringBody(Utils.getSetting("privatekey")));
+			mpEntity.addPart("source", new StringBody("minecraft_" + Ushare.VERSION));
+
+			httppost.setEntity(mpEntity);
+			System.out.println("executing request " + httppost.getRequestLine());
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity resEntity = response.getEntity();
+
+			result = EntityUtils.toString(resEntity);
+
+			System.out.println(response.getStatusLine());
+			System.out.println("json : " + result);
+
+			resEntity.consumeContent();
+			httpclient.getConnectionManager().shutdown();
+			
+			Utils.setSetting("accountkey", "");
+			Utils.setSetting("privatekey", "");
+			Utils.setSetting("loginSuccess", "false");
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
