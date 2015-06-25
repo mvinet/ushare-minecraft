@@ -90,8 +90,10 @@ public class UshareAPI {
 			chat.getChatStyle().setUnderlined(true);
 			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(chat);
 
-			file.delete();
-
+			if(!Utils.getSetting("saveScreen").equalsIgnoreCase("on"))
+			{
+				file.delete();
+			}
 		}
 		catch(Exception e)
 		{

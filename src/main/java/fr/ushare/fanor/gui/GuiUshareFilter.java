@@ -20,12 +20,12 @@ public class GuiUshareFilter extends GuiScreen{
 	/**
 	 * color
 	 */
-	public String color = "none";
+	private String color = "none";
 	
 	/**
 	 * transparency
 	 */
-	public int transparency = 0;
+	private int transparency = 0;
 
 	@SuppressWarnings("unchecked")
 	public void initGui()
@@ -54,23 +54,24 @@ public class GuiUshareFilter extends GuiScreen{
 			switch(button.id)
 			{
 			case 2:
-				if(button.displayString.equalsIgnoreCase("none"))
+				if(color.equalsIgnoreCase("none"))
 				{
-					button.displayString = "red";
+					color = "red";
 				}
-				else if(button.displayString.equalsIgnoreCase("red"))
+				else if(color.equalsIgnoreCase("red"))
 				{
-					button.displayString = "green";
+					color = "green";
 				}
-				else if(button.displayString.equalsIgnoreCase("green"))
+				else if(color.equalsIgnoreCase("green"))
 				{
-					button.displayString = "blue";
+					color = "blue";
 				}
 				else
 				{
-					button.displayString = "none";
+					color = "none";
 				}
-				Utils.setSetting("color", button.displayString.toLowerCase());
+				Utils.setSetting("color", color);
+				button.displayString = "color : " + color;
 				break;
 			case 3:
 				if(transparency < 100)
@@ -81,7 +82,7 @@ public class GuiUshareFilter extends GuiScreen{
 				{
 					transparency = 0;
 				}
-				button.displayString = "" + transparency;
+				button.displayString = "transparency : " + transparency;
 				Utils.setSetting("transparency", transparency + "");
 				break;
 			case 4:

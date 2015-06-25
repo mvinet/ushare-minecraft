@@ -98,6 +98,11 @@ public class Utils {
 				Element color = doc.createElement("color");
 				color.appendChild(doc.createTextNode("none"));
 				setting.appendChild(color);
+				
+				//saveScreen elements
+				Element saveScreen = doc.createElement("saveScreen");
+				saveScreen.appendChild(doc.createTextNode("On"));
+				setting.appendChild(saveScreen);
 
 				// write the content into xml file
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();

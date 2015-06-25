@@ -47,12 +47,12 @@ public class Ushare
 	/**
 	 * Version of Mod
 	 */
-	public static final String VERSION = "Beta1.6";
+	public static final String VERSION = "Beta1.7";
 	
 	/**
 	 * API 
 	 */
-	public UshareAPI api;
+	private UshareAPI api;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
