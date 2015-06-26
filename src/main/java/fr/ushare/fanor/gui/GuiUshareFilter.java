@@ -1,0 +1,103 @@
+package fr.ushare.fanor.gui;
+
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
+import fr.ushare.fanor.Utils;
+
+/**
+ * This file (c) by : - Mickael VINET alias fanor79
+ *
+ * This file is licensed under a
+ * GNU GENERAL PUBLIC LICENSE V3.0
+ *
+ * See the LICENSE file to learn more.
+ *
+ * If you have contributed to this file, add your name to authors list.
+*/
+public class GuiUshareFilter extends GuiScreen{
+
+	/**
+	 * color
+	 */
+	private String color = "none";
+	
+	/**
+	 * transparency
+	 */
+	private int transparency = 0;
+
+	@SuppressWarnings("unchecked")
+	public void initGui()
+	{
+		byte b0 = -16;
+
+		try 
+		{
+			color = Utils.getSetting("color");
+			transparency = Integer.parseInt(Utils.getSetting("transparency"));
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+
+		this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 120 + b0 * 3, 98, 20, I18n.format("color: " + color, new Object[0])));
+		this.buttonList.add(new GuiButton(3, this.width / 2 + 2, this.height / 4 + 120 + b0 * 3, 98, 20, I18n.format("transparency: " + transparency, new Object[0])));
+
+		this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 120 + b0, I18n.format("Back", new Object[0])));
+	}
+
+	protected void actionPerformed(GuiButton button)
+	{
+		try {
+			switch(button.id)
+			{
+			case 2:
+				if(color.equalsIgnoreCase("none"))
+				{
+					color = "red";
+				}
+				else if(color.equalsIgnoreCase("red"))
+				{
+					color = "green";
+				}
+				else if(color.equalsIgnoreCase("green"))
+				{
+					color = "blue";
+				}
+				else
+				{
+					color = "none";
+				}
+				Utils.setSetting("color", color);
+				button.displayString = "color : " + color;
+				break;
+			case 3:
+				if(transparency < 100)
+				{
+					transparency = transparency + 10;
+				}
+				else
+				{
+					transparency = 0;
+				}
+				button.displayString = "transparency : " + transparency;
+				Utils.setSetting("transparency", transparency + "");
+				break;
+			case 4:
+				this.mc.displayGuiScreen(new GuiUshare());
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void drawScreen(int x, int y, float p_73863_3_)
+	{
+		this.drawDefaultBackground();
+		this.drawCenteredString(this.fontRendererObj, I18n.format("Ushare Filter", new Object[0]), this.width / 2, 40, 16777215);
+		super.drawScreen(x, y, p_73863_3_);
+	}
+}

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ushare",
+  "name": "Ushare Mod",
+  "description": "Instantly share your game !",
+  "version": "Beta1.7",
+  "mcversion": "1.8",
+  "url": "http://ushare.so",
+  "updateUrl": "",
+  "authorList": ["Fanor79", "Imote"],
+  "credits": "",
+  "logoFile": "logo.png",
+  "screenshots": ["logo.png"],
+  "dependencies": []
+}
+]

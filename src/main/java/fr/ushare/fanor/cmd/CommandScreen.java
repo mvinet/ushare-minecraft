@@ -1,0 +1,80 @@
+package fr.ushare.fanor.cmd;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.command.ICommand;
+import net.minecraft.command.ICommandSender;
+import fr.ushare.fanor.SendFile;
+
+/**
+ * This file (c) by : - Mickael VINET alias fanor79
+ *
+ * This file is licensed under a
+ * GNU GENERAL PUBLIC LICENSE V3.0
+ *
+ * See the LICENSE file to learn more.
+ *
+ * If you have contributed to this file, add your name to authors list.
+*/
+public class CommandScreen implements ICommand 
+{
+	/**
+	 * aliases for the screen cmd
+	 */
+	private List<String> aliases;
+	
+	public CommandScreen() 
+	{
+		this.aliases = new ArrayList<String>();
+		this.aliases.add("screen");
+		this.aliases.add("s");
+	}
+	
+	@Override
+	public int compareTo(Object arg0) 
+	{
+		return 0;
+	}
+
+	@Override
+	public String getCommandUsage(ICommandSender sender) 
+	{
+		return "/screen";
+	}
+
+	@Override
+	public boolean isUsernameIndex(String[] args, int index)
+	{
+		return false;
+	}
+
+	@Override
+	public List<?> addTabCompletionOptions(ICommandSender arg0, String[] arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean canCommandSenderUseCommand(ICommandSender arg0) {
+		return true;
+	}
+
+	@Override
+	public List<String> getCommandAliases() {
+		return this.aliases;
+	}
+
+	@Override
+	public String getCommandName() {
+		return "screen";
+	}
+
+	@Override
+	public void processCommand(ICommandSender arg0, String[] arg1) {
+		SendFile sfile = new SendFile("sendfile");
+		sfile.start();
+		
+	}
+
+}
