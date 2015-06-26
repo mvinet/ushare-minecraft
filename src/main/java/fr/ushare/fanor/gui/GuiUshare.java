@@ -34,14 +34,14 @@ public class GuiUshare extends GuiScreen{
 
 			if(!Utils.getSetting("loginSuccess").equalsIgnoreCase("true"))
 			{
-				this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + b0*7, I18n.format("Login", new Object[0])));
+				this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + b0*7, I18n.format("ushare.login", new Object[0])));
 			}
 			else
 			{
-				this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + b0*7, I18n.format("Logout", new Object[0])));
+				this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + b0*7, I18n.format("ushare.logout", new Object[0])));
 			}
-			this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 120 + b0*3, 98, 20, I18n.format("Filter", new Object[0])));
-			this.buttonList.add(new GuiButton(3, this.width / 2 + 2, this.height / 4 + 120 + b0*3, 98, 20, I18n.format("Save Screen : " + saveScreen, new Object[0])));
+			this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 120 + b0*3, 98, 20, I18n.format("ushare.filter", new Object[0])));
+			this.buttonList.add(new GuiButton(3, this.width / 2 + 2, this.height / 4 + 120 + b0*3, 98, 20, I18n.format("ushare.saveScreen", new Object[0]) + saveScreen));
 			this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 120 + b0, I18n.format("menu.returnToGame", new Object[0])));
 
 		}catch(Exception e)
@@ -76,7 +76,7 @@ public class GuiUshare extends GuiScreen{
 					saveScreen = "On";
 				}
 				Utils.setSetting("saveScreen", saveScreen);
-				button.displayString = "Save Screen : " + saveScreen;
+				button.displayString = I18n.format("ushare.saveScreen", new Object[0]) + saveScreen;
 				break;
 			case 4:
 				this.mc.displayGuiScreen((GuiScreen)null);

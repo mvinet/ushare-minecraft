@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.ClickEvent.Action;
 import net.minecraft.util.ChatComponentText;
@@ -78,7 +79,7 @@ public class UshareAPI {
 			System.out.println(response.getStatusLine());
 			if (resEntity != null) {
 				picUrl = EntityUtils.toString(resEntity);
-				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Link copied in clipboard !"));
+				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(I18n.format("ushare.link", new Object[0])));
 				Utils.Copier(picUrl);
 
 				resEntity.consumeContent();
@@ -86,7 +87,7 @@ public class UshareAPI {
 
 			httpclient.getConnectionManager().shutdown();
 
-			ChatComponentText chat = new ChatComponentText("Screen Uploaded");
+			ChatComponentText chat = new ChatComponentText(I18n.format("ushare.upload", new Object[0]));
 			chat.getChatStyle().setChatClickEvent(new ClickEvent(Action.OPEN_URL, picUrl));
 			chat.getChatStyle().setUnderlined(true);
 			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(chat);
@@ -99,7 +100,7 @@ public class UshareAPI {
 		catch(Exception e)
 		{
 			try{
-				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("Error"));
+				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(I18n.format("ushare.error", new Object[0])));
 			}catch(Exception ex)
 			{
 
@@ -155,7 +156,7 @@ public class UshareAPI {
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(new JFrame(), "Login or Password Incorect", "Credentials Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(new JFrame(), I18n.format("ushare.login.error.msg", new Object[0]), I18n.format("ushare.login.error.title", new Object[0]), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		catch(Exception e)
