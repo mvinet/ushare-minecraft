@@ -22,8 +22,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  *
  * If you have contributed to this file, add your name to authors list.
 */
-public class PlayerEventHandler {
-
+public class PlayerEventHandler 
+{
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e)
 	{
@@ -39,7 +39,6 @@ public class PlayerEventHandler {
 				{
 					Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(I18n.format("ushare.release", new Object[0])));	
 				}
-
 			} 
 			catch (Exception e2) 
 			{
