@@ -27,6 +27,7 @@ import fr.ushare.apache.MultipartEntity;
 import fr.ushare.apache.content.ContentBody;
 import fr.ushare.apache.content.FileBody;
 import fr.ushare.apache.content.StringBody;
+import fr.ushare.fanor.gui.GuiTextPassword;
 
 /**
  * This file (c) by : - Mickael VINET alias fanor79
@@ -113,7 +114,7 @@ public class UshareAPI {
 	 * @param password GuiTextField of password
 	 */
 	@SuppressWarnings("resource")
-	public void login(GuiTextField login, GuiTextField password)
+	public void login(GuiTextField login, GuiTextPassword password)
 	{
 		login.setEnabled(false);
 		password.setEnabled(false);
@@ -129,7 +130,7 @@ public class UshareAPI {
 			MultipartEntity mpEntity = new MultipartEntity();
 
 			mpEntity.addPart("username", new StringBody(login.getText()));
-			mpEntity.addPart("password", new StringBody(Utils.toSHA256(password.getText())));
+			mpEntity.addPart("password", new StringBody(Utils.toSHA256(password.getRealText())));
 			mpEntity.addPart("source", new StringBody("minecraft_" + Ushare.VERSION));
 
 			httppost.setEntity(mpEntity);

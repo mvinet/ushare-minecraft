@@ -32,7 +32,7 @@ public class GuiUshareLogin extends GuiScreen {
 	/**
 	 * Input Password
 	 */
-	private GuiTextField textPassword;
+	private GuiTextPassword textPassword;
 
 	@SuppressWarnings("unchecked")
 	public void initGui()
@@ -44,7 +44,7 @@ public class GuiUshareLogin extends GuiScreen {
 		this.textLogin = new GuiTextField(0, this.fontRendererObj, this.width / 2 - 100, this.height / 4 + 120 + b0*6, 95, 20);
 		this.textLogin.setText("login");
 
-		this.textPassword = new GuiTextField(1, this.fontRendererObj, this.width / 2 + 2, this.height / 4 + 120 + b0*6, 95, 20);
+		this.textPassword = new GuiTextPassword(1, this.fontRendererObj, this.width / 2 + 2, this.height / 4 + 120 + b0*6, 95, 20);
 		this.textPassword.setText("password");
 
 		this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 120 + b0 * 4, I18n.format("Login", new Object[0])));
