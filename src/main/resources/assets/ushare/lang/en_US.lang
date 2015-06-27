@@ -1,0 +1,16 @@
+#Ushare message
+ushare.release=[UShare] A new release of Ushare is now available on http://usqua.re
+ushare.link=[UShare] Link copied in clipboard !
+ushare.upload.start=[UShare] Start Upload ..
+ushare.upload.end=[UShare] Screen Uploaded
+ushare.error=[UShare] Error!
+ushare.login=Login
+ushare.login.error.msg=Login or Password Incorect
+ushare.login.error.title=Credentials Error
+ushare.logout=Logout
+ushare.filter=Filter
+ushare.saveScreen=Save Screen : 
+
+#Key
+key.screen=Screen
+key.gui=Gui

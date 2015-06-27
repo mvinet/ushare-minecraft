@@ -53,6 +53,7 @@ public class UshareAPI {
 		String picUrl = "";
 		try
 		{
+			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(I18n.format("ushare.upload.start", new Object[0])));
 			HttpClient httpclient = new DefaultHttpClient();
 			httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
@@ -87,7 +88,7 @@ public class UshareAPI {
 
 			httpclient.getConnectionManager().shutdown();
 
-			ChatComponentText chat = new ChatComponentText(I18n.format("ushare.upload", new Object[0]));
+			ChatComponentText chat = new ChatComponentText(I18n.format("ushare.upload.end", new Object[0]));
 			chat.getChatStyle().setChatClickEvent(new ClickEvent(Action.OPEN_URL, picUrl));
 			chat.getChatStyle().setUnderlined(true);
 			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(chat);
