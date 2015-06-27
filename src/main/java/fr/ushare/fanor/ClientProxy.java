@@ -49,8 +49,8 @@ public class ClientProxy extends CommonProxy{
 	public ClientProxy()
 	{
 		FMLCommonHandler.instance().bus().register(this);
-		keyScreen = new KeyBinding("Screen", Keyboard.KEY_NONE, "Ushare");
-		keyGui = new KeyBinding("Gui", Keyboard.KEY_U, "Ushare");
+		keyScreen = new KeyBinding("key.screen", Keyboard.KEY_NONE, "Ushare");
+		keyGui = new KeyBinding("key.gui", Keyboard.KEY_U, "Ushare");
 		press = false;
 		mc = Minecraft.getMinecraft();
 

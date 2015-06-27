@@ -7,6 +7,7 @@ import java.net.URL;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -36,13 +37,12 @@ public class PlayerEventHandler {
 				String urlv = txt.readLine();
 				if(!Ushare.VERSION.equalsIgnoreCase(urlv))
 				{
-					Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("A new release of Ushare " + urlv + " is now available on http://usqua.re"));	
+					Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(I18n.format("ushare.release", new Object[0])));	
 				}
 
 			} 
 			catch (Exception e2) 
 			{
-				//		Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("A new release of Ushare is now available on http://usqua.re"));	
 			}
 		}
 	}
